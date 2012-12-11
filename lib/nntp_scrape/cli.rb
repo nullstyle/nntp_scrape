@@ -18,8 +18,8 @@ module NntpScrape
     def headers(group)
       setup
       
-      @client.watch_new(group) do |result|
-        p result
+      @client.stream_overviews(group) do |sequence_id, overview|
+        p sequence_id
       end
 
     end  

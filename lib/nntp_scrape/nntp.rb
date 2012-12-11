@@ -36,29 +36,7 @@ module NntpScrape
       load_overivew_format if logged_in?
     end
     
-    def watch(group, start_id=nil)
-      watch = Commands::Group.new(group)
-      run watch
-      return false unless watch.success?
-      
-      puts watch.high_id
-      head = Commands::Head.new(start_id || watch.high_id)
-      run head
-      return false unless head.success?
-            
-      loop do
-        commands = [Commands::Next.new, Commands::Head.new]
-        
-        unless run *commands
-          puts "pausing..."
-          sleep 1
-          next
-        end
-        puts commands[1].message_id
-      end
-    end
-    
-    def watch_new(group, start_id=nil)
+    def stream_overviews(group, start_id=nil)
       if start_id.nil?
         watch = Commands::Group.new(group)
         run watch
@@ -78,7 +56,7 @@ module NntpScrape
           next
         end
         
-        xhdr = Commands::Xhdr.new "Message-ID", start_id...end_id
+        xhdr = Commands::Xover.new start_id...end_id
         run xhdr
         next unless xhdr.success?
         
