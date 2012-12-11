@@ -5,7 +5,7 @@ module NntpScrape
   autoload :Cli,      "nntp_scrape/cli"
   autoload :Config,   "nntp_scrape/config"
   autoload :NNTP,     "nntp_scrape/nntp"
-  autoload :Console,  "nntp_scrape/console"
+  autoload :Repl,     "nntp_scrape/repl"
   
   module Commands
     autoload :Base,         "nntp_scrape/commands/base"

@@ -1,7 +1,7 @@
 require 'pry'
 
 module NntpScrape
-  class Console 
+  class Repl 
     include Commands
     
     attr_reader :client

@@ -19,11 +19,11 @@ module NntpScrape
 
     end  
     
-    desc "console", "Starts an interactive console"
-    def console
+    desc "repl", "Starts an interactive repl"
+    def repl
       setup
-      c = Console.new(@client)
-      c.start
+      r = Repl.new(@client)
+      r.start
     end
     
     

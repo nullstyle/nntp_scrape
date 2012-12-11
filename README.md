@@ -36,7 +36,15 @@ Then you can:
 # watches the provided group, outputting a line of json everytime a new article is posted
 nntp_scrape headers alt.binaries.teevee
 
-
+# starts a repl to interact with the usenet server directly
+nntp_scrape repl
+>> run Capabilities
+=> #<NntpScrape::Commands::Capabilities:0x007ffc56914e20
+ @caps=
+  ["VERSION 1",
+   "MODE-READER",
+   "READER",
+   ...
 ```
 
 ## Contributing
