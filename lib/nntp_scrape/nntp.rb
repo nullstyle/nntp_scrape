@@ -21,7 +21,11 @@ module NntpScrape
     end
     
     def debug?
-      false
+      @debug
+    end
+    
+    def debug=(val)
+      @debug = val
     end
     
     def open
