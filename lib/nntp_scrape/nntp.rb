@@ -6,6 +6,7 @@ module NntpScrape
   class NNTP
     attr_reader :socket
     attr_reader :caps
+    attr_reader :overview_format
     
     def initialize(host, port, ssl, user, pass)
       @host = host
@@ -32,6 +33,7 @@ module NntpScrape
     def open
       @socket = make_socket
       login
+      load_overivew_format if logged_in?
     end
     
     def watch(group, start_id=nil)
@@ -157,6 +159,16 @@ module NntpScrape
       @logged_in = run *login_commands
       
       @caps = login_commands.last.caps
+      
+    end
+    
+    def load_overivew_format
+      list_caps = @caps["LIST"]
+      return unless list_caps.present? && list_caps.include?("OVERVIEW.FMT")
+      
+      overview = Commands::List.new("OVERVIEW.FMT")
+      run overview
+      @overview_format = overview.lines if overview.success?
       
     end
   end

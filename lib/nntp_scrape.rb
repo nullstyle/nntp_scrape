@@ -16,6 +16,7 @@ module NntpScrape
     autoload :Xhdr,         "nntp_scrape/commands/xhdr"
     autoload :Xover,        "nntp_scrape/commands/xover"
     autoload :Capabilities, "nntp_scrape/commands/capabilities"
+    autoload :List,         "nntp_scrape/commands/list"
     
   end
   
