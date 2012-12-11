@@ -63,7 +63,7 @@ module NntpScrape
         watch = Commands::Group.new(group)
         run watch
         return false unless watch.success?
-        start_id = watch.high_id
+        start_id = watch.high_id.to_i
       end
       
       loop do
@@ -71,7 +71,7 @@ module NntpScrape
         run watch
         next unless watch.success?
         
-        end_id = watch.high_id
+        end_id = watch.high_id.to_i
         
         if start_id == end_id
           sleep 1

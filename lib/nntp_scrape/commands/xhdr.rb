@@ -13,11 +13,7 @@ module NntpScrape
       end
       
       def execute(client)
-        if @range.is_a? Range
-          run_long client, "XHDR", @field, "#{@range.begin}-#{@range.end}"
-        else
-          run_long client, "XHDR", @field, @range         
-        end
+        run_long client, "XHDR", @field, translate_range(@range)
         
         @results = @lines.map{|l| l.split(" ")}
       end

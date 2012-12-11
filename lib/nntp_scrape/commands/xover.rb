@@ -12,11 +12,7 @@ module NntpScrape
       end
       
       def execute(client)
-        if @range.is_a? Range
-          run_long client, "XOVER", "#{@range.begin}-#{@range.end}"
-        else
-          run_long client, "XOVER", @range         
-        end
+        run_long client, "XOVER", translate_range(@range)
         
         @results = @lines.map do |l|
           fields = l.split("\t")

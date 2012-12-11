@@ -41,6 +41,17 @@ module NntpScrape
       def run_long(client, cmd, *params)
         @status_line, @lines = *client.run_long(cmd, *params)
       end
+      
+      private
+      def translate_range(range)
+        if range.is_a? Range
+          first, last = *[range.first, range.last]
+          last -= 1 if range.exclude_end?
+          "#{first}-#{last}"
+        else
+          range
+        end
+      end
     end
   end
 end
