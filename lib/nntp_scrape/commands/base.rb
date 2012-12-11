@@ -2,6 +2,11 @@ module NntpScrape
   module Commands
     class Base
       attr_reader :response, :status_line, :lines
+      attr_accessor :timeout
+      
+      def initialize
+        @timeout = 5
+      end
       
       def ran?
         status_line.present?

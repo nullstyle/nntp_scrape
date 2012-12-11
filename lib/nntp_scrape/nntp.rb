@@ -1,5 +1,6 @@
 require 'socket'
 require 'openssl'
+require 'timeout'
 
 module NntpScrape
   class NNTP
@@ -91,11 +92,13 @@ module NntpScrape
     # @return [Boolean] true if all commands succeeded
     def run(*commands)
       commands.each do |cmd|
-        cmd.execute(self)
+        Timeout::timeout(cmd.timeout) do
+          cmd.execute(self)
+        end
         return false unless cmd.continue?
       end
       true
-    rescue Errno::EPIPE, Errno::ECONNRESET, OpenSSL::SSL::SSLError
+    rescue Errno::EPIPE, Errno::ECONNRESET, OpenSSL::SSL::SSLError, Timeout::Error
       open
       retry
     end
