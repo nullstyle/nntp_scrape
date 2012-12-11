@@ -13,6 +13,7 @@ module NntpScrape
     autoload :Group,    "nntp_scrape/commands/group"
     autoload :Next,     "nntp_scrape/commands/next"
     autoload :Head,     "nntp_scrape/commands/head"
+    autoload :Xhdr,     "nntp_scrape/commands/xhdr"
     
   end
   
