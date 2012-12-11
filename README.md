@@ -32,7 +32,7 @@ pass: bazbak
 Then you can:
 
 ```bash
-
+#/usr/bin/env bash
 # watches the provided group, outputting a line of json everytime a new article is posted
 nntp_scrape headers alt.binaries.teevee
 
