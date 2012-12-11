@@ -5,7 +5,7 @@ require 'timeout'
 module NntpScrape
   class NNTP
     attr_reader :socket
-    
+    attr_reader :caps
     
     def initialize(host, port, ssl, user, pass)
       @host = host
@@ -13,7 +13,7 @@ module NntpScrape
       @ssl  = ssl
       @user = user
       @pass = pass
-      
+      @caps = []
       open
     end
     
@@ -152,8 +152,12 @@ module NntpScrape
       login_commands = [
         Commands::AuthInfo.new("USER", @user),
         Commands::AuthInfo.new("PASS", @pass),
+        Commands::Capabilities.new,
       ]
       @logged_in = run *login_commands
+      
+      @caps = login_commands.last.caps
+      
     end
   end
 end

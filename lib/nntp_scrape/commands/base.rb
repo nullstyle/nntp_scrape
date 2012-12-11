@@ -8,13 +8,17 @@ module NntpScrape
         @timeout = 5
       end
       
+      def self.supported?(client)
+        true
+      end
+      
       def ran?
         status_line.present?
       end
     
       def success?
         return false unless ran?
-        status_code[0] == "2"
+        status_code[0] == "1" || status_code[0] == "2"
       end
       
       def continue?

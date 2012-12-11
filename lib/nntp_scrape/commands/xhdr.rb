@@ -3,6 +3,10 @@ module NntpScrape
     class Xhdr < Base
       attr_reader :results
       
+      def self.supported?(client)
+        client.caps.include? "XHDR"
+      end
+      
       def initialize(field, range)
         @field = field
         @range = range
