@@ -9,6 +9,11 @@ module NntpScrape
       :type => :string, 
       :default => ENV["HOME"] + "/.nntp_scrape"
     
+      class_option :debug, 
+        :desc => "Enables debug tracing",
+        :type => :boolean, 
+        :default => false
+    
     desc "headers GROUP", "watches GROUP, outputting lines of json as new headers are found"
     def headers(group)
       setup
@@ -37,6 +42,7 @@ module NntpScrape
       end
 
       @client = NNTP.new(config.host, config.port, config.ssl, config.user, config.pass)
+      @client.debug = options[:debug]
       
       unless @client.logged_in?
         puts "login failed"
