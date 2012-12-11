@@ -4,6 +4,8 @@ module NntpScrape
   class Console 
     include Commands
     
+    attr_reader :client
+    
     def initialize(client)
       @client = client
     end
