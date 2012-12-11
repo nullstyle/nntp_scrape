@@ -4,7 +4,7 @@ module NntpScrape
       attr_reader :results
       
       def self.supported?(client)
-        client.caps.include? "XHDR"
+        client.caps["XHDR"]
       end
       
       def initialize(field, range)

@@ -4,7 +4,7 @@ module NntpScrape
       attr_reader :results
       
       def self.supported?(client)
-        client.caps.include? "XOVER"
+        client.caps["XOVER"]
       end
       
       def initialize(range)

@@ -11,7 +11,11 @@ module NntpScrape
         run_long client, "CAPABILITIES" 
         return unless success?
         
-        @caps = lines
+        @caps = lines.inject({}) do |memo, line|
+          words = line.split()
+          memo[words.first] = words.length == 1 ? true :  words.drop(1)
+          memo
+        end
       end
     end
   end
