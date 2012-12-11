@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = NntpScrape::VERSION
   gem.authors       = ["Scott Fleckenstein"]
   gem.email         = ["nullstyle@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{A series of command line tools to interact with usenet}
+  gem.summary       = %q{A series of command line tools to interact with usenet}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
