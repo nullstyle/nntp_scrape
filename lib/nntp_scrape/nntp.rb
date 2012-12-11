@@ -13,9 +13,7 @@ module NntpScrape
       @user = user
       @pass = pass
       
-      @socket = make_socket
-      
-      login
+      open
     end
     
     def logged_in?
@@ -24,6 +22,11 @@ module NntpScrape
     
     def debug?
       false
+    end
+    
+    def open
+      @socket = make_socket
+      login
     end
     
     def watch(group, start_id=nil)
@@ -58,6 +61,9 @@ module NntpScrape
         return false unless cmd.continue?
       end
       true
+    rescue Errno::EPIPE, Errno::ECONNRESET, OpenSSL::SSL::SSLError
+      open
+      retry
     end
     
     
