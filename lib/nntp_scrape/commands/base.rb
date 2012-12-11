@@ -30,7 +30,7 @@ module NntpScrape
       end
     
       def run_short(client, cmd, *params)
-        @status_line = client.run_short(cmd, *params)
+        @status_line = client.run_short(cmd, *params).strip
         
       end
     
