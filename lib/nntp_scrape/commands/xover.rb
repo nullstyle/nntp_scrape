@@ -18,7 +18,10 @@ module NntpScrape
           run_long client, "XOVER", @range         
         end
         
-        @results = @lines.map{|l| l.split("\t")}
+        @results = @lines.map do |l|
+          fields = l.split("\t")
+          [fields.first, client.overview_format.zip(fields.drop(1))]
+        end
       end
     end
   end
