@@ -13,7 +13,9 @@ module NntpScrape
     def headers(group)
       setup
       
-      @client.watch(group)
+      @client.watch_new(group) do |result|
+        p result
+      end
 
     end  
     

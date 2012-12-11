@@ -55,6 +55,36 @@ module NntpScrape
       end
     end
     
+    def watch_new(group, start_id=nil)
+      if start_id.nil?
+        watch = Commands::Group.new(group)
+        run watch
+        return false unless watch.success?
+        start_id = watch.high_id
+      end
+      
+      loop do
+        watch = Commands::Group.new(group)
+        run watch
+        next unless watch.success?
+        
+        end_id = watch.high_id
+        
+        if start_id == end_id
+          sleep 1
+          next
+        end
+        
+        xhdr = Commands::Xhdr.new "Message-ID", start_id...end_id
+        run xhdr
+        next unless xhdr.success?
+        
+        xhdr.results.each{|v| yield v}
+        start_id = end_id
+      end
+      
+    end
+    
     ##
     # Executes an array of commands until one fails
     # 
