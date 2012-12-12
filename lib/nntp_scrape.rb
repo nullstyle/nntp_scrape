@@ -8,6 +8,7 @@ module NntpScrape
   autoload :Client,           "nntp_scrape/client"
   autoload :Repl,             "nntp_scrape/repl"
   autoload :SubjectExtractor, "nntp_scrape/subject_extractor"
+  autoload :Util,             "nntp_scrape/util"
   
   module Commands
     autoload :Base,         "nntp_scrape/commands/base"
