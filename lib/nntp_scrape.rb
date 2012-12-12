@@ -14,6 +14,7 @@ module NntpScrape
     autoload :AuthInfo,     "nntp_scrape/commands/auth_info"
     autoload :Group,        "nntp_scrape/commands/group"
     autoload :Next,         "nntp_scrape/commands/next"
+    autoload :Article,      "nntp_scrape/commands/article"
     autoload :Head,         "nntp_scrape/commands/head"
     autoload :Body,         "nntp_scrape/commands/body"
     autoload :Xhdr,         "nntp_scrape/commands/xhdr"
