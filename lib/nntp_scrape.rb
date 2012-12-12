@@ -15,6 +15,7 @@ module NntpScrape
     autoload :Group,        "nntp_scrape/commands/group"
     autoload :Next,         "nntp_scrape/commands/next"
     autoload :Head,         "nntp_scrape/commands/head"
+    autoload :Body,         "nntp_scrape/commands/body"
     autoload :Xhdr,         "nntp_scrape/commands/xhdr"
     autoload :Xover,        "nntp_scrape/commands/xover"
     autoload :Capabilities, "nntp_scrape/commands/capabilities"
