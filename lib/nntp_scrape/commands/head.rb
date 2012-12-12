@@ -20,7 +20,9 @@ module NntpScrape
         @data = {}
         lines.each do |line|
           key, value = *line.split(": ", 2)
-          @data[key] = value
+          
+          @data[key] ||= ""
+          @data[key] += value
         end        
       end
     end
