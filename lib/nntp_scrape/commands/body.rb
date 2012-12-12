@@ -1,6 +1,7 @@
 module NntpScrape
   module Commands
     class Body < Base
+      include Util
       attr_reader :message_id
       attr_reader :data
       
@@ -16,7 +17,8 @@ module NntpScrape
         end
         
         @message_id = status_line.split.last
-        @data = lines.join("\n")
+        @data = read_body lines.each
+
       end
     end
   end
