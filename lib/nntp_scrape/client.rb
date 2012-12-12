@@ -3,7 +3,7 @@ require 'openssl'
 require 'timeout'
 
 module NntpScrape
-  class NNTP
+  class Client
     attr_reader :socket
     attr_reader :caps
     attr_reader :overview_format

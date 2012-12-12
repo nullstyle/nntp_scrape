@@ -59,7 +59,7 @@ module NntpScrape
         exit 1
       end
 
-      @client = NNTP.new(config.host, config.port, config.ssl, config.user, config.pass)
+      @client = Client.new(config.host, config.port, config.ssl, config.user, config.pass)
       @client.debug = options[:debug]
       
       unless @client.logged_in?
