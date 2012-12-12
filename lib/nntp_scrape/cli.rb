@@ -9,17 +9,17 @@ module NntpScrape
       :type => :string, 
       :default => ENV["HOME"] + "/.nntp_scrape"
     
-      class_option :debug, 
-        :desc => "Enables debug tracing",
-        :type => :boolean, 
-        :default => false
+    class_option :debug, 
+      :desc => "Enables debug tracing",
+      :type => :boolean, 
+      :default => false
     
     desc "headers GROUP", "watches GROUP, outputting lines of json as new headers are found"
     def headers(group)
       setup
       
       @client.stream_overviews(group) do |sequence_id, overview|
-        p sequence_id
+        puts ActiveSupport::JSON.encode(overview)
       end
 
     end  
