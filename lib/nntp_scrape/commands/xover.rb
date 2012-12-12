@@ -16,7 +16,8 @@ module NntpScrape
         
         @results = @lines.map do |l|
           fields = l.split("\t")
-          [fields.first, client.overview_format.zip(fields.drop(1))]
+          overview = Hash[client.overview_format.zip(fields.drop(1))]
+          [fields.first, overview]
         end
       end
     end
