@@ -21,4 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency "activesupport", ">= 3.2.9"
   gem.add_dependency "hashie",        ">= 1.2.0"
   gem.add_dependency "pry",           ">= 0.9.10"
+  gem.add_dependency "yajl-ruby",     "~> 1.1.0"
 end

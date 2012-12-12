@@ -21,8 +21,26 @@ module NntpScrape
       @client.stream_overviews(group) do |sequence_id, overview|
         puts ActiveSupport::JSON.encode(overview)
       end
-
-    end  
+    end 
+    
+    desc "extract", "extracts metadata from the subject line of json-encoded overviews read from stdin"
+    def extract
+      extractor = SubjectExtractor.new
+      loop do
+        json = $stdin.gets
+        
+        sleep(1) and next if json.blank?
+          
+        decoded = begin
+          ActiveSupport::JSON.decode(json) || {}
+        rescue MultiJson::DecodeError
+          {}
+        end
+        
+        subject = decoded["Subject:"]
+        puts ActiveSupport::JSON.encode(extractor.extract(subject))
+      end
+    end   
     
     desc "repl", "Starts an interactive repl"
     def repl

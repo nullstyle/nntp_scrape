@@ -1,11 +1,13 @@
 require "nntp_scrape/version"
+require 'yajl'
 require 'active_support/core_ext/string'
 
 module NntpScrape
-  autoload :Cli,      "nntp_scrape/cli"
-  autoload :Config,   "nntp_scrape/config"
-  autoload :NNTP,     "nntp_scrape/nntp"
-  autoload :Repl,     "nntp_scrape/repl"
+  autoload :Cli,              "nntp_scrape/cli"
+  autoload :Config,           "nntp_scrape/config"
+  autoload :NNTP,             "nntp_scrape/nntp"
+  autoload :Repl,             "nntp_scrape/repl"
+  autoload :SubjectExtractor, "nntp_scrape/subject_extractor"
   
   module Commands
     autoload :Base,         "nntp_scrape/commands/base"
